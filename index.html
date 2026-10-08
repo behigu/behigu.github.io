@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Behigu Gizachew Portfolio</title>
 <meta name="description" content="Behigu Gizachew Mesfin, Software Engineer in Addis Ababa. Full-stack, cloud and data platforms for healthcare and fintech.">
+<link rel="icon" id="favicon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -423,6 +425,38 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: 
 (function () {
   var EMAIL = "be.gizachew@gmail.com";
   var WA = "251918216560";
+
+
+  // animated tab icon: blinking terminal cursor; a wave when the visitor switches tabs
+  (function () {
+    var link = document.getElementById("favicon");
+    var c = document.createElement("canvas"); c.width = c.height = 64;
+    var g = c.getContext && c.getContext("2d");
+    if (!link || !g) return;
+    var on = true, waving = false, wave = 0, baseTitle = document.title;
+    function draw() {
+      g.clearRect(0, 0, 64, 64);
+      g.fillStyle = "#a5432a";
+      if (g.roundRect) { g.beginPath(); g.roundRect(0, 0, 64, 64, 14); g.fill(); } else { g.fillRect(0, 0, 64, 64); }
+      g.fillStyle = "#fff";
+      if (waving) {
+        g.save(); g.translate(32, 36); g.rotate(Math.sin(wave) * 0.45);
+        g.font = "40px serif"; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText("\uD83D\uDC4B", 0, 0); g.restore();
+      } else {
+        g.font = "900 42px Merriweather, Georgia, serif"; g.textBaseline = "alphabetic"; g.fillText("b", 10, 47);
+        if (on) g.fillRect(38, 40, 16, 6);
+      }
+      link.href = c.toDataURL("image/png");
+    }
+    var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    setInterval(function () { if (waving) wave += 0.9; else on = !on; draw(); }, reduce ? 2000 : 530);
+    document.addEventListener("visibilitychange", function () {
+      waving = document.hidden;
+      document.title = document.hidden ? "\uD83D\uDC4B Come back, let's talk" : baseTitle;
+      draw();
+    });
+    draw();
+  })();
 
   document.getElementById("yr").textContent = new Date().getFullYear();
 
