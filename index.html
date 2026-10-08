@@ -133,6 +133,15 @@ h2 { font-family: var(--serif); font-weight: 900; font-size: clamp(28px, 3.6vw, 
 .proj h3 { margin: 0; font-size: 20px; line-height: 1.3; }
 .proj p { margin: 0; color: var(--muted); font-size: 16px; flex: 1; }
 
+.group-label { font-family: var(--mono); font-size: 13px; font-weight: 500; color: var(--muted); margin: 8px 0 14px; letter-spacing: .04em; }
+.projects + .group-label { margin-top: 36px; }
+div.proj:hover { transform: none; border-color: var(--line); }
+
+.projects.prod { grid-template-columns: repeat(6, 1fr); }
+.projects.prod > :nth-child(-n+2) { grid-column: span 3; }
+.projects.prod > :nth-child(n+3) { grid-column: span 2; }
+@media (max-width: 860px) { .projects.prod { grid-template-columns: 1fr; } .projects.prod > * { grid-column: auto !important; } }
+
 /* stack */
 .stack { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); gap: 28px 32px; }
 .stack h3 { font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
@@ -306,7 +315,41 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: 
 
   <section class="block wrap" id="projects">
     <p class="eyebrow">02 · Projects</p>
-    <h2>Machine learning and data work on GitHub</h2>
+    <h2>Systems in production, and the ML work behind them</h2>
+    <h3 class="group-label">// in production</h3>
+    <div class="projects prod">
+      <a class="proj" href="https://iclpartner.com/" target="_blank" rel="noopener">
+        <div class="top"><span class="kind">Healthcare · live</span><span class="arrow">↗</span></div>
+        <h3>ICL lab ordering portal</h3>
+        <p>Web portal where partner clinics and client companies order lab tests and check results online.</p>
+        <div class="tags"><span class="tag">iclpartner.com</span><span class="tag">Lab orders</span><span class="tag">Results</span></div>
+      </a>
+      <a class="proj" href="https://crm.addisnova.com/" target="_blank" rel="noopener">
+        <div class="top"><span class="kind">Business · live</span><span class="arrow">↗</span></div>
+        <h3>AddisNova CRM</h3>
+        <p>A customer relationship management system for tracking clients, contacts and sales activity.</p>
+        <div class="tags"><span class="tag">crm.addisnova.com</span><span class="tag">Web app</span></div>
+      </a>
+      <div class="proj">
+        <div class="top"><span class="kind">Messaging</span></div>
+        <h3>Telegram lab bots</h3>
+        <p>Telegram bots that let patients place lab orders and receive their results directly in the chat.</p>
+        <div class="tags"><span class="tag">Telegram Bot API</span><span class="tag">Lab orders</span></div>
+      </div>
+      <div class="proj">
+        <div class="top"><span class="kind">Infrastructure</span></div>
+        <h3>Notification service</h3>
+        <p>A shared service that sends SMS and email notifications, such as order updates and result alerts.</p>
+        <div class="tags"><span class="tag">SMS</span><span class="tag">Email</span></div>
+      </div>
+      <div class="proj">
+        <div class="top"><span class="kind">Infrastructure</span></div>
+        <h3>Company email on mailcow</h3>
+        <p>Self-hosted email service on mailcow: domains, mailboxes, aliases and spam filtering for the organization.</p>
+        <div class="tags"><span class="tag">mailcow</span><span class="tag">Docker</span><span class="tag">Linux</span></div>
+      </div>
+    </div>
+    <h3 class="group-label">// machine learning &amp; data</h3>
     <div class="projects">
       <a class="proj" href="https://github.com/10acad-group3/speech_recognition" target="_blank" rel="noopener">
         <div class="top"><span class="kind">Deep learning</span><span class="arrow">↗</span></div>
